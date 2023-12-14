@@ -54,16 +54,20 @@ class Coches implements Runnable{
             //y para que espere para volver a entrar si "quiere"
             long tiempo = (long) ((Math.random() * 5000) + 1000);
             System.out.println("El coche: " + id + " esta en la fila");
+            System.out.println("--------");
             semaphore.acquire();
             System.out.println("El coche: " + id + " ha entrado");
+            System.out.println("--------");
             Thread.sleep( tiempo );
             System.out.println("El coche " + id + " ha salido a circular");
+            System.out.println("--------");
             semaphore.release();
             //Sumo 5 al contador de cada coche que haya salido
             //Y sumo 1 para controlar cuantos coches han salido
             caja.setPrecio(5);
             cochesSalidos++;
             System.out.println("El coche: " + id + " acumula " + caja.getPrecio() + " Euros");
+            System.out.println("--------");
             Thread.sleep(tiempo);//Controla el tiempo que el coche está "circulando"
             //Cuando cochesSalidos llega a 5 el while finaliza y acaba
             if(cochesSalidos >= 5){

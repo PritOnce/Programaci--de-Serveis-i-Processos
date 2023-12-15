@@ -82,18 +82,18 @@ class Coches extends Thread{
         try {
             while (!Thread.interrupted()) {
                 Random r = new Random();
-            //paseamos
-            System.out.println(getName() + ": Estoy paseando");
-            Thread.sleep(r.nextInt(2000, 4000));
-            //entramos
-            System.out.println(getName() + ": Intento entrar");
-            parking.entrar(this);
-            //compramos
-            System.out.println(getName() + ": Estoy dentro. Voy a comprar");
-            Thread.sleep(r.nextInt(2000, 4000));
-            //salimos
-            System.out.println(getName() + ": Salgo...");
-            parking.salir(this);
+                //paseamos
+                System.out.println(getName() + ": Estoy paseando");
+                Thread.sleep(r.nextInt(2000, 4000));
+                //entramos
+                System.out.println(getName() + ": Intento entrar");
+                parking.entrar(this);
+                //compramos
+                System.out.println(getName() + ": Estoy dentro. Voy a comprar");
+                Thread.sleep(r.nextInt(2000, 4000));
+                //salimos
+                System.out.println(getName() + ": Salgo...");
+                parking.salir(this);
             }
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block

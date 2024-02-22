@@ -41,7 +41,7 @@ public class Servidor implements InterfaceBiblio {
         
         Registry reg = null;
         try {
-            reg = LocateRegistry.createRegistry(5555);
+            reg = LocateRegistry.createRegistry(5000);
         } catch (Exception e) {
             System.out.println("ERROR: No se ha podido crear el registro");
             e.printStackTrace();

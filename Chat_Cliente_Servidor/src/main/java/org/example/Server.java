@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Server {
     private final static ArrayList<Socket> connections = new ArrayList<>();
-    private final static ArrayList<String> mensajes = new ArrayList<>();
+    // private final static ArrayList<String> mensajes = new ArrayList<>();
 
     public static void main(String[] args) {
         ServerSocket serverSocket = null;
@@ -66,12 +66,12 @@ public class Server {
                 br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 String line;
                 while ((line = br.readLine()) != null) {
-                    mensajes.add(line);
+                    // mensajes.add(line);
                     for (Socket sock : connections) {
                         if(sock!=socket){
                             bw = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
-                        bw.write(line + "\n");
-                        bw.flush();
+                            bw.write(line + "\n");
+                            bw.flush();
                         }
                     }
                 }

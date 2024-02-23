@@ -1,37 +1,71 @@
 public class Tablero {
-    private Fichas[][] casillas;
 
-    public Tablero() {
-        casillas = new Fichas[3][3];
-        reiniciarTablero();
-    }
+    enum FICHA {
+        X, O, EMPTY
+    };
 
-    public void reiniciarTablero() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                casillas[i][j] = Fichas.VACIO;
+    static FICHA[][] tablero = new FICHA[3][3];
+    /*
+     * 0.0, 0.1, 0.2
+     * 1.0, 1.1, 1.2
+     * 2.0, 2.1, 2.2
+     */
+
+    public static int[][][] posicionesGanadoras = {
+            { { 0, 0 }, { 0, 1 }, { 0, 2 } }, 
+            { { 1, 0 }, { 1, 1 }, { 1, 2 } }, 
+            { { 2, 0 }, { 2, 1 }, { 2, 2 } }, 
+            { { 0, 0 }, { 1, 0 }, { 2, 0 } }, 
+            { { 0, 1 }, { 1, 1 }, { 2, 1 } }, 
+            { { 0, 2 }, { 1, 2 }, { 2, 2 } },
+            { { 0, 0 }, { 1, 1 }, { 2, 2 } }, 
+            { { 0, 2 }, { 1, 1 }, { 2, 0 } } 
+    };
+
+    public void createTablero() {
+        for (int row = 0; row < tablero.length; row++) {
+            for (int column = 0; column < tablero.length; column++) {
+                tablero[row][column] = null;
             }
         }
     }
 
-    public boolean validarMovimiento(int fila, int columna) {
-        return fila >= 0 && fila < 3 && columna >= 0 && columna < 3 && casillas[fila][columna] == Fichas.VACIO;
-    }
-
-    public void setFicha(int fila, int columna, Fichas ficha) {
-        casillas[fila][columna] = ficha;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                builder.append(casillas[i][j] == Fichas.VACIO ? "-" : casillas[i][j]);
-                builder.append(" ");
+    public static void getTablero() {
+        System.out.println("----------------------");
+        for (int row = 0; row < tablero.length; row++) {
+            System.out.print("| ");
+            for (int column = 0; column < tablero[row].length; column++) {
+                System.out.print(tablero[row][column] + " | ");
             }
-            builder.append("\n");
+            System.out.println();
+            System.out.println("----------------------");
         }
-        return builder.toString();
     }
+
+    public static void setFicha(int fila, int columna, FICHA ficha) {
+        if (fila >= 0 && fila < tablero.length && columna >= 0 && columna < tablero[0].length) {
+            tablero[fila][columna] = ficha;
+        } else {
+            System.out.println("Coordenadas inválidas.");
+        }
+    }
+
+    public static int getPosition(int fila, int columna) {
+        if(tablero[fila][columna] == null){
+            return 1;
+        }
+        return 2;
+    }
+
+    public static boolean isTableroLleno() {
+        for (FICHA[] fila : tablero) {
+            for (FICHA ficha : fila) {
+                if (ficha == null) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }

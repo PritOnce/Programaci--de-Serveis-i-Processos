@@ -70,9 +70,9 @@ class Coches implements Runnable{
             System.out.println("--------");
             Thread.sleep(tiempo);//Controla el tiempo que el coche está "circulando"
             //Cuando cochesSalidos llega a 5 el while finaliza y acaba
-            if(cochesSalidos >= 5){
-                System.exit(0);
-            }
+            // if(cochesSalidos >= 5){
+            //     System.exit(0);
+            // }
         }
 
     } catch (InterruptedException ie) {

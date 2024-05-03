@@ -1,4 +1,3 @@
-import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
@@ -13,6 +12,7 @@ public class App {
         Scanner sc = new Scanner(System.in);
         String message = sc.nextLine();
 
+        //Genero la llave
         SecretKey skey = keygenKeyGeneration(128);
         byte[] mensajeCifrado = cifrarMensaje(skey, message);
 
@@ -23,6 +23,8 @@ public class App {
         System.out.println("Mensaje descifrado:\n"+mensajeDescifrado);
     }
 
+
+    //Generamos la clave
     public static SecretKey keygenKeyGeneration(int keySize) throws NoSuchAlgorithmException {
     SecretKey sKey = null;
     if ((keySize == 128)||(keySize == 192)||(keySize == 256)) {
@@ -48,6 +50,7 @@ public class App {
         return mensajeCifrado;
     }
 
+    //Desciframos el mensaje
     public static String descrifrarMensaje(SecretKey sKey, byte[] message) {
         String messageDescifrado = null;
         try {

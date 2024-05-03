@@ -4,8 +4,8 @@ import java.util.HexFormat;
 public class App {
     public static void main(String[] args) throws Exception {
         //Pedimos los argumentos por argumentos
-        String algoritmo = args[0].toString();
-        String message = args[1].toString();
+        String algoritmo = args[0];
+        String message = args[1];
 
         MessageDigest md = MessageDigest.getInstance(algoritmo);
 

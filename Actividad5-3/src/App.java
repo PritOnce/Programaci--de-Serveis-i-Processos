@@ -1,8 +1,12 @@
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.security.MessageDigest;
-import java.util.HexFormat;
 
+/**
+ *
+ * @author prito
+ */
 public class App {
     public static void main(String[] args) throws Exception {
         if (args.length < 2) {
@@ -10,10 +14,11 @@ public class App {
             System.exit(0);
         }
 
-        String algoritmo = args[0].toString();
-        File file = new File(args[1].toString());
+        String algoritmo = args[0];
+        File file = new File(args[1]);
 
         FileInputStream fis = new FileInputStream(file);
+        FileOutputStream fos = new FileOutputStream("data.hash");
 
         if (!((algoritmo.equals("SHA-256")) || (algoritmo.equals("MD5")) || (algoritmo.equals("SHA-1")))) {
             System.out.println("Introduce un algoritmo valido");
@@ -27,13 +32,13 @@ public class App {
 
         MessageDigest md = MessageDigest.getInstance(algoritmo);
 
-        byte[] demoArray = new byte[ (int) file.length() ];
+        byte dataToHash[] = fis.readAllBytes();
 
-        fis.read(demoArray);
-        fis.close();
+        byte[] hash = md.digest(dataToHash);
 
-        byte[] hash = md.digest(demoArray);
-
-        System.out.println(HexFormat.of().formatHex(hash));
+        fos.write(hash);
+        fos.flush();
+        fos.close();
+        
     } 
 }
